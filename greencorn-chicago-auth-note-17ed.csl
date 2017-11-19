@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="display-and-sort" page-range-format="chicago">
   <info>
-    <title>Chicago Manual of Style 17th edition (author-date) - Chris Greencorn</title>
-    <id>http://csl.mendeley.com/styles/482093541/chicago-author-date-greencorn</id>
+    <title>Chicago Manual of Style 16th edition (author-date)</title>
+    <id>http://www.zotero.org/styles/chicago-author-date</id>
     <link href="http://www.zotero.org/styles/chicago-author-date" rel="self"/>
     <link href="http://www.chicagomanualofstyle.org/tools_citationguide.html" rel="documentation"/>
     <author>
@@ -18,17 +18,13 @@
       <uri>http://arc.nucapt.northwestern.edu/Richard_Karnesky</uri>
     </contributor>
     <contributor>
-      <name>Chris Greencorn</name>
-      <email>chris.greencorn@mail.utoronto.ca</email>
-    </contributor>
-    <contributor>
       <name>Andrew Dunning</name>
       <email>andrew.dunning@utoronto.ca</email>
     </contributor>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>The author-date variant of the Chicago style</summary>
-    <updated>2017-11-19T19:00:22+00:00</updated>
+    <updated>2017-11-19T19:29:24+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -165,14 +161,20 @@
       </choose>
       <choose>
         <if type="webpage post-weblog" match="any">
-          <date variable="issued" form="text"/>
+          <date variable="issued" delimiter=" ">
+            <date-part name="month"/>
+            <date-part name="day"/>
+          </date>
         </if>
       </choose>
       <choose>
         <if variable="issued" match="none">
           <group delimiter=" ">
             <text term="accessed" text-case="capitalize-first"/>
-            <date variable="accessed" form="text"/>
+            <date variable="accessed" delimiter=" ">
+              <date-part name="month"/>
+              <date-part name="day"/>
+            </date>
           </group>
         </if>
       </choose>
@@ -180,17 +182,12 @@
         <if type="legal_case" match="none">
           <choose>
             <if variable="DOI">
-              <text variable="DOI" prefix="https://doi.org/"/>
+              <text variable="DOI" prefix="doi:"/>
             </if>
             <else>
               <text variable="URL"/>
             </else>
           </choose>
-        </if>
-      </choose>
-      <choose>
-        <if type="thesis" match="any">
-          <text/>
         </if>
       </choose>
     </group>
@@ -369,7 +366,7 @@
       <else-if type="article-journal">
         <choose>
           <if variable="volume issue" match="any">
-            <text variable="page" prefix=":"/>
+            <text variable="page" prefix=": "/>
           </if>
           <else>
             <text variable="page" prefix=", "/>
@@ -421,19 +418,9 @@
       </if>
     </choose>
     <choose>
-      <if type="webpage">
-        <text variable="container-title" text-case="title"/>
+      <if type="legal_case" match="none">
+        <text variable="container-title" text-case="title" font-style="italic"/>
       </if>
-      <else-if type="legal_case" match="none">
-        <group delimiter=" ">
-          <text variable="container-title" text-case="title" font-style="italic"/>
-          <choose>
-            <if type="post-weblog">
-              <text value="(blog)"/>
-            </if>
-          </choose>
-        </group>
-      </else-if>
     </choose>
   </macro>
   <macro name="publisher">
@@ -452,6 +439,11 @@
           </date>
         </group>
       </if>
+      <else-if variable="accessed">
+        <date variable="accessed">
+          <date-part name="year"/>
+        </date>
+      </else-if>
       <else-if variable="status">
         <text variable="status" text-case="capitalize-first"/>
       </else-if>
@@ -470,6 +462,11 @@
           </date>
         </group>
       </if>
+      <else-if variable="accessed">
+        <date variable="accessed">
+          <date-part name="year"/>
+        </date>
+      </else-if>
       <else-if variable="status">
         <text variable="status"/>
       </else-if>
@@ -569,7 +566,7 @@
         </group>
       </else-if>
       <else-if type="article-newspaper article-magazine personal_communication" match="any">
-        <date variable="issued" form="text" prefix=", "/>
+        <text macro="day-month" prefix=", "/>
       </else-if>
       <else-if type="patent">
         <group delimiter=", " prefix=", ">
@@ -602,7 +599,7 @@
   </macro>
   <macro name="thesis-type">
     <choose>
-      <if match="any" variable="genre">
+      <if type="thesis" match="any">
         <text variable="genre" text-case="capitalize-first"/>
       </if>
     </choose>
@@ -649,10 +646,10 @@
       <text macro="collection-title-journal" prefix=", " suffix=", "/>
       <text macro="locators"/>
       <text macro="collection-title" prefix=". "/>
+      <text macro="thesis-type" text-case="capitalize-first"/>
       <text macro="issue"/>
       <text macro="locators-article"/>
       <text macro="access" prefix=". "/>
-      <text macro="thesis-type"/>
     </layout>
   </bibliography>
 </style>
