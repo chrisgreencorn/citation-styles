@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="display-and-sort" page-range-format="chicago">
+  <!-- This style was edited with the Visual CSL Editor (http://editor.citationstyles.org/visualEditor/) -->
   <info>
     <title>Chicago Manual of Style 16th edition (author-date) - Chris Greencorn</title>
-    <id>http://www.zotero.org/styles/chicago-author-date</id>
-    <link href="http://www.zotero.org/styles/chicago-author-date" rel="self"/>
+    <id>http://www.zotero.org/styles/chicago-manual-of-style-16th-edition-author-date-chris-greencorn</id>
+    <link href="http://www.zotero.org/styles/chicago-manual-of-style-16th-edition-author-date-chris-greencorn" rel="self"/>
     <link href="http://www.chicagomanualofstyle.org/tools_citationguide.html" rel="documentation"/>
     <author>
       <name>Julian Onions</name>
@@ -18,13 +19,18 @@
       <uri>http://arc.nucapt.northwestern.edu/Richard_Karnesky</uri>
     </contributor>
     <contributor>
+      <name>Chris Greencorn</name>
+      <email>chris.greencorn@mail.utoronto.ca</email>
+    </contributor>
+    <contributor>
       <name>Andrew Dunning</name>
       <email>andrew.dunning@utoronto.ca</email>
     </contributor>
     <category citation-format="author-date"/>
     <category field="generic-base"/>
     <summary>The author-date variant of the Chicago style</summary>
-    <updated>2017-11-19T19:29:24+00:00</updated>
+    <published>November 19, 2017</published>
+    <updated>2017-11-19T19:41:24+00:00</updated>
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <locale xml:lang="en">
@@ -597,13 +603,6 @@
       </else>
     </choose>
   </macro>
-  <macro name="thesis-type">
-    <choose>
-      <if type="thesis" match="any">
-        <text variable="genre" text-case="capitalize-first"/>
-      </if>
-    </choose>
-  </macro>
   <citation et-al-min="4" et-al-use-first="1" disambiguate-add-year-suffix="true" disambiguate-add-names="true" disambiguate-add-givenname="true" givenname-disambiguation-rule="primary-name" collapse="year">
     <layout prefix="(" suffix=")" delimiter="; ">
       <group delimiter=", ">
@@ -646,7 +645,7 @@
       <text macro="collection-title-journal" prefix=", " suffix=", "/>
       <text macro="locators"/>
       <text macro="collection-title" prefix=". "/>
-      <text macro="thesis-type" text-case="capitalize-first"/>
+      <text variable="genre" text-case="capitalize-first"/>
       <text macro="issue"/>
       <text macro="locators-article"/>
       <text macro="access" prefix=". "/>
